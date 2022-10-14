@@ -2,8 +2,21 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 800,
   "height": 450,
-  "title": "Average Happiness Rating 2015",
+  "title": "Average Happiness Rating",
   "projection": {"type": "equalEarth"},
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2015,
+      "bind": {
+        "input": "range",
+        "min": 2015,
+        "max": 2019,
+        "step": 1,
+        "name": "Year: "
+      }
+    }
+  ],
   "layer": [
     {
       "data": {
@@ -18,7 +31,11 @@
             "type": "nominal",
             "title": "Country"
           },
-          {"field": "Happiness Score 2015", "type": "quantitative"}
+          {
+            "field": "Happiness_Score",
+            "type": "quantitative",
+            "title": "Happiness Score"
+          }
         ]
       }
     },
@@ -39,10 +56,10 @@
           "lookup": "properties.BRK_NAME",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/Sam-Halford/FIT3179/main/Assignment%202/code/happiness.csv"
+              "url": "https://raw.githubusercontent.com/Sam-Halford/FIT3179/main/Assignment%202/code/happiness_year_transformed_underscores.csv"
             },
             "key": "Country",
-            "fields": ["Happiness Score 2015"]
+            "fields": ["Happiness_Score"]
           }
         }
       ],
@@ -54,10 +71,15 @@
             "type": "nominal",
             "title": "Country"
           },
-          {"field": "Happiness Score 2015", "type": "quantitative"}
+          {
+            "field": "Happiness_Score",
+            "type": "quantitative",
+            "title": "Happiness Score"
+          }
         ],
         "color": {
-          "field": "Happiness Score 2015",
+          "title": "Happiness Score",
+          "field": "Happiness_Score",
           "type": "quantitative",
           "scale": {"range": ["#00005A", "#FDF502"]}
         }
